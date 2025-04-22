@@ -21,7 +21,7 @@
     <label>
       <input type="radio" name="size" value="large"> Large
     </label><br>
-    
+
   <h2>Choose Your Toppings...</h2>
   <form>
     <label>
@@ -34,6 +34,50 @@
       <input type="checkbox" name="topping" value="grilledonions"> Grilled Onions
     </label><br>
   </form>
+
+
+  <p id = "size"> Size Selected: </p>
+
+
+  <script>
+
+  //const large = document.querySelector('input[value="large"]')
+
+  //document.querySelector('input[value="large"]').addEventListener('change',function//(
+
+  //){
+
+  //document.getElementById('size').textContent = "Size: large";
+
+  //})
+
+  const allRadioButtons = document.querySelectorAll('input[name = "size"]');
+  const sizeTag = document.getElementById("size");
+
+  // add eventListener to each radio buttons 
+
+  allRadioButtons.forEach(radio =>{
+  radio.addEventListener('change',() =>{
+  sizeTag.textContent = "Size: "+ radio.value;
+
+  });
+
+  })
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
