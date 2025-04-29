@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>Piiiiiiiizzzzzza inc.</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -13,13 +13,13 @@
   <h2>Choose Your Size...</h2>
   <form>
     <label>
-      <input type="radio" name="size" value="small"> Small
+      <input type="radio" name="size" value="Small:10"> Small
     </label><br>
     <label>
-      <input type="radio" name="size" value="medium" checked> Medium
+      <input type="radio" name="size" value="Medium:12" checked> Medium
     </label><br>
     <label>
-      <input type="radio" name="size" value="large"> Large
+      <input type="radio" name="size" value="Large:15"> Large
     </label><br>
 
   <h2>Choose Your Toppings...</h2>
@@ -37,6 +37,7 @@
 
 
   <p id = "size"> Size Selected: </p>
+  <p id="totalprice" style="color:green; font-size:22px">Total Price</p>
 
 
   <script>
@@ -53,12 +54,16 @@
 
   const allRadioButtons = document.querySelectorAll('input[name = "size"]');
   const sizeTag = document.getElementById("size");
+  const totalPriceTag = document.getElementById("totalprice");
 
   // add eventListener to each radio buttons 
 
   allRadioButtons.forEach(radio =>{
   radio.addEventListener('change',() =>{
-  sizeTag.textContent = "Size: "+ radio.value;
+  sizeTag.textContent = "Size: "+ radio.value.split(":")[0];
+  totalPriceTag.textContent = "Total Price: $"+ radio.value.split(":")[1];
+
+  
 
   });
 
@@ -71,6 +76,16 @@
   </script>
 
 
+
+
+
+
+
+
+
+</body>
+
+</html>
 
 
 
