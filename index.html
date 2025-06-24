@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Piiiiiiiizzzzzza inc.</title>
+  <title>replit</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -13,17 +13,17 @@
   <h2>Choose Your Size...</h2>
   <form>
     <label>
-      <input type="radio" name="size" value="Small:10"> Small
+      <input type="radio" name="size" value="small:10"> Small
     </label><br>
     <label>
-      <input type="radio" name="size" value="Medium:12" checked> Medium
+      <input type="radio" name="size" value="medium:12" checked> Medium
     </label><br>
     <label>
-      <input type="radio" name="size" value="Large:15"> Large
+      <input type="radio" name="size" value="large:15"> Large
     </label><br>
 
   <h2>Choose Your Toppings...</h2>
-  <form>
+
     <label>
       <input type="checkbox" name="topping" value="mushroom"> Mushrooms
     </label><br>
@@ -37,39 +37,66 @@
 
 
   <p id = "size"> Size Selected: </p>
-  <p id="totalprice" style="color:green; font-size:22px">Total Price</p>
+  <p id = "toppings"> Topping(s) Selected: </p>
+  <p id = "price"> Total Price: </p>
+  <p>Tip: $</p>
+  <input type="text"><br>
+  
+  <button onclick="goToNextPage()">Confirm Tip and Finish</button>
+
 
 
   <script>
 
-  //const large = document.querySelector('input[value="large"]')
 
-  //document.querySelector('input[value="large"]').addEventListener('change',function//(
-
-  //){
-
-  //document.getElementById('size').textContent = "Size: large";
-
-  //})
 
   const allRadioButtons = document.querySelectorAll('input[name = "size"]');
   const sizeTag = document.getElementById("size");
-  const totalPriceTag = document.getElementById("totalprice");
+
+  const toppingTag = document.getElementById("toppings")
+
+  const priceTag = document.getElementById("price")
+
+  //checkbox
+
+  const checkboxes = document.querySelectorAll('input[name="topping"]');
+
+  function updateToppings() {
+
+  const selectedToppings = [];
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      selectedToppings.push(checkbox.value);}});
+
+  if (selectedToppings.length > 0) {
+    toppingTag.textContent = "Topping(s) Selected: " + selectedToppings.join(', ');
+  } else {
+    toppingTag.textContent = "Topping(s) Selected: None";
+  }
+}
+
+
+
+
+
 
   // add eventListener to each radio buttons 
 
   allRadioButtons.forEach(radio =>{
   radio.addEventListener('change',() =>{
   sizeTag.textContent = "Size: "+ radio.value.split(":")[0];
-  totalPriceTag.textContent = "Total Price: $"+ radio.value.split(":")[1];
-
-  
+  priceTag.textContent = "Total Price: $"+ radio.value.split(":")[1];
 
   });
 
   })
+  
 
-
+function goToNextPage() {
+    const price = document.getElementById("price").textContent;
+    window.location.href = "display.html?price=" + encodeURIComponent(price);
+}
 
 
 
@@ -87,12 +114,3 @@
 
 </html>
 
-
-
-
-
-
-
-</body>
-
-</html>
