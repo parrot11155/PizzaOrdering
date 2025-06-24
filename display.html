@@ -2,9 +2,41 @@
 <html>
 <head>
     <title>Order Confirmation</title>
+    <script authed="location.reload()" src="https://auth.util.repl.co/script.js"></script>
 </head>
 <body>
     <h1 id="greeting">Thank you, human!</h1>
+    <div id="orderSummary">
+        <h2>Your Total</h2>
+        <p id="totalDisplay"></p>
+    </div>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Get customer name and total price
+        let name = urlParams.get('name') || 'Customer';
+        const totalPrice = urlParams.get('totalPrice') || '0';
+        
+        // Check if user is authenticated and use their Replit name
+        async function loadUserInfo() {
+            try {
+                const response = await fetch('/__replauthuser');
+                if (response.ok) {
+                    const user = await response.json();
+                    name = user.name;
+                }
+            } catch (error) {
+                // Use the name from URL params if auth fails
+            }
+            
+            // Update greeting and display
+            document.getElementById('greeting').textContent = `Thank you, ${name}!`;
+            document.getElementById('totalDisplay').textContent = `Total Price: $${totalPrice}`;
+        }
+        
+        loadUserInfo();
+    </script>
     
     <button onclick="window.location.href='index.html'">Finish and Return Home</button>
 </body>
